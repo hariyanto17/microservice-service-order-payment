@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  nginx:
+    container_name: con_webserver_sercice_order_payment
+    # lokasi source code
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    # path untuk source di dalam docker
+    volumes:
+      - ./:/var/www
+    image: webserver_sercice_order_payment:1.0
+    ports:
+      - "8001:8001"
+
+  app:
+    container_name: con_sercice_order_payment
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    image: sercice_order_payment:1.0
+    volumes:
+      - ./:/var/www
